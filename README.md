@@ -7,7 +7,8 @@ Basics
 ------
 To use ``rmake``, you create a file in your project root called ``Ruleset`` and
 write a set of rules describing how to transform your source code into desired
-build targets.
+build targets.  Once you have your rules in place, you simply run `rmake` from
+the project root.
 
 The Ruleset File
 ----------------
