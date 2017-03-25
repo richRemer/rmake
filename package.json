@@ -1,0 +1,30 @@
+{
+  "name": "rmake",
+  "version": "0.0.1",
+  "description": "simpler alternative to make - Rulemake",
+  "main": "rmake.js",
+  "bin": {
+    "rmake": "rmake-cli.js"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/richRemer/bodewell.git"
+  },
+  "keywords": [
+    "build",
+    "system",
+    "makefile"
+  ],
+  "author": "Richard Remer <reanjr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/richRemer/bodewell/issues"
+  },
+  "homepage": "https://github.com/richRemer/bodewell#readme"
+}
