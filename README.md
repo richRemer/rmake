@@ -31,7 +31,7 @@ anywhere else in the `Ruleset`.
 ```
 set $pi 3.14159
 
-print-pi
+rule print-pi
     cmd echo $pi
 ```
 
