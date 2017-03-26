@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/richRemer/bodewell/issues"
   },
-  "homepage": "https://github.com/richRemer/bodewell#readme"
+  "homepage": "https://github.com/richRemer/bodewell#readme",
+  "dependencies": {
+    "qwcli": "^0.1.0"
+  }
 }
