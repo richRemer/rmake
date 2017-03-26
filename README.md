@@ -30,9 +30,10 @@ anywhere else in the `Ruleset`.
 **Example**
 ```
 set $pi 3.14159
+command print-pi
 
 rule print-pi
-    cmd echo $pi
+    echo $pi
 ```
 
 ### Rules
