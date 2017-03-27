@@ -60,7 +60,7 @@ rule src/%.c
 rule build/%.o
     target /dist/bin/foo
     mkdir
-    cmd gcc %<* -Wal -o %>
+    cmd gcc %<* -Wall -o %>
 ```
 
 **Example - Web Project**
