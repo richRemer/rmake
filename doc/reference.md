@@ -7,6 +7,68 @@ ignored.  Each rule block begins with a `rule` directive, and the global block
 ends at the first rule block.  Within a block, the order of directives is not
 important.
 
+R-vars
+------
+Directive data may include sequences referencing rmake variables or *r-vars*.
+These *r-vars* are context-sensitive.  Not all *r-vars* are available to all
+directives, and some *r-vars* may mean different things in different directives.
+
+### Path: %
+**directives:** `rule` `target`
+
+Inside a `rule` directive, the `%` *r-var* acts as a wildcard matching any path.
+Unlike the `**` wildcard, the `%` *r-var* will match a partial filename inside a
+sub-directory, and unlike the `*` wildcard, the `%` *r-var* will match paths
+inside sub-directories.  It operates similar to if you were to match against
+`**/*` and `*`, and then combine the results.
+
+Inside a `target` directive, the `%` *r-var* expands to the value matched by the
+corresponding `%` *r-var* in the `rule` pattern.
+
+### Inputs: %*
+**directives:** `cmd`
+
+The `%*` *r-var* evaluates to the rule inputs.  Use the `%*` *r-var* inside a
+`cmd` that accepts multiple inputs and generates a single output.
+
+### Input: %<
+**directives:** `cmd` `target`
+
+The `%<` *r-var* evaluates to a rule input.  If a rule has multiple inputs, the
+presence of the `%<` *r-var* inside a `target` or `cmd` directive causes the
+directive to undergo expansion, creating multiple targets or executing multiple
+commands.
+
+### Output: %>
+**directives:** `cmd`
+
+The `%>` *r-var* evaluates to a rule output.  If a rule has multiple outputs,
+the presence of the `%>` *r-var* inside a `cmd` directive causes the directive
+to undergo expansion, executing multiple commands.
+
+### List Expansion: %1..%9
+**directives:** `cmd` `target`
+
+The `rule` and `target` directives can contain user-defined lists to generate
+multiple inputs or outputs.  The `%1` *r-var* and related *r-vars* evaluate to
+the corresponding list expansions from the `rule` or `target` directives, with
+`rule` expansions preceding `target` expansions.
+
+Inside a `target` directive, the `%1` *r-var* and related *r-vars* can only
+reference list expansions from the `rule` directive.
+
+```
+rule {one,a}
+    target {two,b}
+    cmd echo -n %1 %2,
+    # output: one two, one b, a two, a b
+```
+
+### Literal: %%
+**directives:** *all*
+
+Use `%%` to insert a literal "%" character into the directive.
+
 Comments
 --------
 Comments begin with a hash `#`.  They are ignored.
@@ -127,13 +189,3 @@ results in an error.
 rule /icon/%.svg
     target /image/%-icon.png
 ```
-
-Escape Sequences
-----------------
- * `%` (rule): path match; matches both `**/*` and `*`
- * `%` (target): evaluates to the path matched in the rule
- * `%<`: input; evaluates to rule input file
- * `%>`: output; evaluates to target output file
- * `%@`: inputs; evaluates to all rule input files
- * `%1`..`%9`: numbered rule/target expansions
- * `%%`: literal "%" character
