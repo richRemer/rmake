@@ -71,24 +71,18 @@ Use `%%` to insert a literal "%" character into the directive.
 
 Comments
 --------
-Comments begin with a hash `#`.  They are ignored.
+<code><strong>#</strong><var>comments</var></code>
 
-```
-# useful text can go here
-```
+Comments are ignored by rmake and are not part of any block.
 
 Directives
 ----------
-Directives have a name and optional data.  The available directives are found
-below.  The general format of all directives is the same.
+<code><var>directive</var> [<var>data</var>]</code>
 
-```
-# 'name' directive, with no data
-name
-
-# 'name' directive with data 'apple banana'
-name    apple banana
-```
+The general form of a directive has a name and optional data.  The available
+directives depends on what type of block the directive is found in.  A *global
+block* may contain [global directives](#global-directives), while a *rule block*
+may contain [rule directives](#rule-directives).
 
 ### Global Directives
 
