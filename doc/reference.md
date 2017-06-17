@@ -13,7 +13,7 @@ Directive data may include sequences referencing rmake variables or *r-vars*.
 These *r-vars* are context-sensitive.  Not all *r-vars* are available to all
 directives, and some *r-vars* may mean different things in different directives.
 
-### Path: %
+### % : path r-var
 **directives:** `rule` `target`
 
 Inside a `rule` directive, the `%` *r-var* acts as a wildcard matching any path.
@@ -25,13 +25,13 @@ combine the results.
 Inside a `target` directive, the `%` *r-var* expands to the value matched by the
 corresponding `%` *r-var* in the `rule` pattern.
 
-### Inputs: %*
+### %* : inputs r-var
 **directives:** `cmd`
 
 The `%*` *r-var* evaluates to the rule inputs.  Use the `%*` *r-var* inside a
 `cmd` that accepts multiple inputs and generates a single output.
 
-### Input: %<
+### %< : input r-var
 **directives:** `cmd` `target`
 
 The `%<` *r-var* evaluates to a rule input.  If a rule has multiple inputs, the
@@ -39,14 +39,14 @@ presence of the `%<` *r-var* inside a `target` or `cmd` directive causes the
 directive to undergo expansion, creating multiple targets or executing multiple
 commands.
 
-### Output: %>
+### %> : output r-var
 **directives:** `cmd`
 
 The `%>` *r-var* evaluates to a rule output.  If a rule has multiple outputs,
 the presence of the `%>` *r-var* inside a `cmd` directive causes the directive
 to undergo expansion, executing multiple commands.
 
-### List Expansion: %1..%9
+### %1..%9 : list expansion r-var
 **directives:** `cmd` `target`
 
 The `rule` and `target` directives can contain user-defined lists to generate
@@ -64,7 +64,7 @@ rule {one,a}
     # output: one two,one b,a two,a b
 ```
 
-### Literal: %%
+### %% : literal r-var
 **directives:** *all*
 
 Use `%%` to insert a literal "%" character into the directive.
@@ -86,7 +86,7 @@ may contain [rule directives](#rule-directives).
 
 ### Global Directives
 
-#### rule
+#### rule: global directive
 <code><string>rule</strong> <var>pattern</var> [<var>pattern</var> ...]</code>
 
 Begin a new rule.  Source files and intermediate files matching any of the
@@ -106,7 +106,7 @@ rule /**/*.scss
     cmd sass --cache-location /tmp %< > %>
 ```
 
-#### set
+#### set: global directive
 <code><strong>set</strong> $<var>id</var> <var>value</var></code>
 
 Set value for an identifier which can be referenced inside data for other
@@ -122,7 +122,7 @@ rule $style/%.scss
 
 ### Rule Directives
 
-#### cd
+#### cd: rule directive
 <code><strong>cd</strong></code>
 
 Change the current working directory to that of the input file before executing
@@ -135,7 +135,7 @@ rule Makefile
     cmd make
 ```
 
-#### cmd
+#### cmd: rule directive
 <code><strong>cmd</strong> <var>command</var></code>
 
 Execute *command* when this rule matches.  If the command executed contains
@@ -156,7 +156,7 @@ rule res/%.js
     cmd cat %@ > %>
 ```
 
-#### mkdir
+#### mkdir: rule directive
 <code><strong>mkdir</strong></code>
 
 Create target directory before executing the command for this rule.  Many build
@@ -170,7 +170,7 @@ rule assets/%
     cmd cp %< %>
 ```
 
-#### target
+#### target: rule directive
 <code><string>target</strong> <var>pattern</var></code>
 
 Map rule inputs to outputs.  If the target pattern contains `*`, `**`, or `%`
