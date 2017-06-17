@@ -61,7 +61,7 @@ reference list expansions from the `rule` directive.
 rule {one,a}
     target {two,b}
     cmd echo -n %1 %2,
-    # output: one two, one b, a two, a b
+    # output: one two,one b,a two,a b
 ```
 
 ### Literal: %%
