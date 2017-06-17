@@ -3,9 +3,9 @@
 # submodule folders and build those before continuing to parent folders
 rule Makefile
 
-	# make requires that it be executed from the directory where the Makefile
-	# is found; this ensures we are in the correct directory
+    # make requires that it be executed from the directory where the Makefile
+    # is found; this ensures we are in the correct directory
     cd
 
-	# for each Makefile matched by the rule, run 'make'
+    # for each Makefile matched by the rule, run 'make'
     cmd make
