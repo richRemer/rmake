@@ -18,7 +18,7 @@ rmake .
 rmake Ruleset
 ```
 
-For more information, check the [rmake Reference][reference.md].
+For more information, check the [rmake Reference](reference.md).
 
 Project Root
 ------------
