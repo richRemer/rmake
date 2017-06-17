@@ -1,11 +1,11 @@
 rmake Ruleset Reference
 =======================
-A **ruleset** is a UTF-8 encoded file containing a **global block** followed by
-zero or more **rule blocks**.  Each block contains lines, each of which can be
-a **directive**, a **comment**, or an empty line.  Comments and empty lines are
-ignored.  Each rule block begins with a `rule` directive, and the global block
-ends at the first rule block.  Within a block, the order of directives is not
-important.
+A *ruleset* is a UTF-8 encoded file containing a *global block* followed by
+zero or more *rule blocks*.  Each block contains lines, each of which can be a
+*directive*, a *comment*, or an empty line.  Any *comments* or empty lines are
+ignored.  Each *rule block* begins with a `rule` directive, and the *global
+block* ends at the first *rule block*.  Within a block, the order of directives
+is not significant.
 
 R-vars
 ------
