@@ -1,0 +1,25 @@
+# match C source files anywhere in the 'src' directory
+rule /src/%.c
+
+    # map each C source file to an output object file in the 'build' directory;
+    # folder structure in the 'src' directory is maintained for the target paths
+    target /build/%.o
+
+    # ensure the target directory inside 'build' exists before compiling
+    mkdir
+
+    # use GCC to compile C source into object targets
+    cmd gcc -c %< -o %>
+
+# match intermediate object files created by the previous rule
+rule /build/%.o
+
+    # project distribution binary path
+    target /dist/bin/my-app
+
+    # ensure the target directory '/dist/bin' exists before linking
+    mkdir
+
+    # use GCC to link all intermediate object files and generate the final
+    # project output binary
+    cmd gcc %@ -Wall -o %>

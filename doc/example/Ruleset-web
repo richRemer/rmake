@@ -1,0 +1,23 @@
+# handle SASS .scss files in 'res' directory
+rule /res/%.scss
+
+    # map .scss files in 'res' to .css files in 'dist'
+    target /dist/%.css
+
+    # ensure target directory in 'dist' exists before SASS processing
+    mkdir
+
+    # use sass to process SCSS into CSS
+    cmd sass --cache-location /tmp %< > %>
+
+# generate rasterized favicons at various resolutions from a vector logo file
+rule /res/image/logo.svg
+
+    # expand the single input file into multiple output paths, one for each
+    # desired resolution
+    target /dist/favicon-{16,32,64,128,256}.png
+
+    # use rsvg-convert to rasterize the logo.svg as different resolutions, using
+    # the target {...} expansion in the option passed to rsvg-convert to set
+    # the resolution
+    cmd rsvg-convert -w %1 -h %1 %< > %>
