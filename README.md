@@ -17,7 +17,7 @@ More information can be found in the [rmake documentation](doc/rmake.md).
 Usage
 -----
 ```
-rmake [--project-root=<root>] [<ruleset>]
+rmake [-v] [--project-root=<root>] [<ruleset>]
 
 Examples:
     # default build, executed from project root
