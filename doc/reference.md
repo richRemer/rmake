@@ -17,10 +17,10 @@ directives, and some *r-vars* may mean different things in different directives.
 **directives:** `rule` `target`
 
 Inside a `rule` directive, the `%` *r-var* acts as a wildcard matching any path.
-Unlike the `**` wildcard, the `%` *r-var* will match a partial filename inside a
-sub-directory, and unlike the `*` wildcard, the `%` *r-var* will match paths
-inside sub-directories.  It operates similar to if you were to match against
-`**/*` and `*`, and then combine the results.
+Unlike the `**` wildcard, the `%` *r-var* matches files inside sub-directories,
+and unlike the `*` wildcard, the `%` *r-var* matches inside sub-directories.  It
+functions similar to if you were to match against `**/*` and `*`, and then
+combine the results.
 
 Inside a `target` directive, the `%` *r-var* expands to the value matched by the
 corresponding `%` *r-var* in the `rule` pattern.
