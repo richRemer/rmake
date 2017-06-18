@@ -13,7 +13,7 @@ Directive data may include sequences referencing rmake variables or *r-vars*.
 These *r-vars* are context-sensitive.  Not all *r-vars* are available to all
 directives, and some *r-vars* may mean different things in different directives.
 
-### % : path r-var
+### %: r-var
 **directives:** `rule` `target`
 
 Inside a `rule` directive, the `%` *r-var* acts as a wildcard matching any path.
@@ -25,13 +25,13 @@ combine the results.
 Inside a `target` directive, the `%` *r-var* expands to the value matched by the
 corresponding `%` *r-var* in the `rule` pattern.
 
-### %* : inputs r-var
+### %*: r-var
 **directives:** `cmd`
 
 The `%*` *r-var* evaluates to the rule inputs.  Use the `%*` *r-var* inside a
 `cmd` that accepts multiple inputs and generates a single output.
 
-### %< : input r-var
+### %<: r-var
 **directives:** `cmd` `target`
 
 The `%<` *r-var* evaluates to a rule input.  If a rule has multiple inputs, the
@@ -39,14 +39,14 @@ presence of the `%<` *r-var* inside a `target` or `cmd` directive causes the
 directive to undergo expansion, creating multiple targets or executing multiple
 commands.
 
-### %> : output r-var
+### %>: r-var
 **directives:** `cmd`
 
 The `%>` *r-var* evaluates to a rule output.  If a rule has multiple outputs,
 the presence of the `%>` *r-var* inside a `cmd` directive causes the directive
 to undergo expansion, executing multiple commands.
 
-### %1..%9 : list expansion r-var
+### %1..%9: r-vars
 **directives:** `cmd` `target`
 
 The `rule` and `target` directives can contain user-defined lists to generate
@@ -64,7 +64,7 @@ rule {one,a}
     # output: one two,one b,a two,a b
 ```
 
-### %% : literal r-var
+### %%: r-var
 **directives:** *all*
 
 Use `%%` to insert a literal "%" character into the directive.
