@@ -87,7 +87,7 @@ may contain [rule directives](#rule-directives).
 ### Global Directives
 
 #### rule: global directive
-<code><string>rule</strong> <var>pattern</var> [<var>pattern</var> ...]</code>
+<code><strong>rule</strong> <var>pattern</var> [<var>pattern</var> ...]</code>
 
 Begin a new rule.  Source files and intermediate files matching any of the
 patterns become rule inputs.  Paths matching a rule target pattern become rule
